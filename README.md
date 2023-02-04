@@ -6,7 +6,7 @@
 
 ## Try different users with the following informations:
 
-1. Student -> username: `student123`\
-2. Professor -> username: `professor123`\
-3. Board-member -> username: `board123`\
+1. Student -> username: `student123`
+2. Professor -> username: `professor123`
+3. Board-member -> username: `board123`
 All passwords are `xdd`
