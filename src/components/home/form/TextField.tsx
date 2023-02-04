@@ -11,6 +11,7 @@ const TextField: React.FC<FieldProps> = props => {
         name={props.name}
         placeholder={props.placeholder}
         autoComplete="false"
+        maxLength={10}
         required
       />
     </div>

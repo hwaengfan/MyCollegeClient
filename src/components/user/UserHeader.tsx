@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { logoutAction } from '../../actions/authenticationActions';
+import { logoutAction } from '../../actions/authenticationAction';
 import { fontFamily, yellow } from '../../assets/global';
 import { UserHeaderProps } from '../../types/PropTypes';
 import { useAppDispatch } from '../../types/ReduxTypes';

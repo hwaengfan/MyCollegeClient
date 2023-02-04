@@ -1,27 +1,28 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { formData } from '../../../types/DataTypes';
+import { signupAction } from '../../../actions/authenticationAction';
 import PasswordField from '../../../components/home/form/PasswordField';
 import SubmitButton from '../../../components/home/form/SubmitButton';
 import TextField from '../../../components/home/form/TextField';
+import { formData } from '../../../types/DataTypes';
+import { useAppDispatch } from '../../../types/ReduxTypes';
 
 const SignupPage: React.FC = () => {
-  const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleSubmitForm = (event: React.SyntheticEvent): void => {
     event.preventDefault();
-    const target = event.target as typeof event.target & formData;
-    alert(
-      'First name: ' +
-        target.firstName.value +
-        '\nLast name: ' +
-        target.lastName.value +
-        '\nUsername: ' +
-        target.username.value +
-        '\nPassword: ' +
-        target.password.value,
-    );
+    const eventTarget = event.target as typeof event.target & formData;
+    const signupData = {
+      firstName: eventTarget.firstName.value,
+      lastName: eventTarget.lastName.value,
+      username: eventTarget.username.value,
+      password: eventTarget.password.value,
+    };
+    dispatch(signupAction(signupData));
+    navigate('/');
   };
 
   return (

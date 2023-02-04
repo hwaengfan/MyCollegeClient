@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import profileImage from '../../assets/images/unknown-profile.jpg';
 import { Button, Form, Image } from 'react-bootstrap';
-import formatName from '../../utils/formatName';
+import profileImage from '../../assets/images/unknown-profile.jpg';
 import { ProfileFormProps } from '../../types/PropTypes';
+import formatName from '../../utils/formatName';
 
 const ProfileForm: React.FC<ProfileFormProps> = props => {
   const [newPass, setNewPass] = useState('');

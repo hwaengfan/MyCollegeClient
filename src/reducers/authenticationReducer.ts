@@ -1,4 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import { SET_CURRENT_USER } from '../types/ActionTypes';
 
 const initialState = {
   currentUserRole: 'guest',
@@ -9,7 +10,7 @@ const authenticationReducer = (
   action: PayloadAction<string>,
 ) => {
   switch (action.type) {
-    case 'SET_CURRENT_USER':
+    case SET_CURRENT_USER:
       return {
         ...state,
         currentUserRole: action.payload,

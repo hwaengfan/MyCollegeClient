@@ -34,6 +34,10 @@ export interface UserHeaderProps {
   }>;
 }
 
+export interface ErrorBoxProps {
+  errorMessage: string;
+}
+
 // User pages
 export interface StudentHeaderProps {
   studentFirstName: string;
