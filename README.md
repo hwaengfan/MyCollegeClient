@@ -6,6 +6,6 @@
 
 ### Try different users with the following informations:
 
-Student -> username: student123, password: xdd
-Professor -> username: professor123, password: xdd
-Board-member -> username: board123, password: xdd
+1. Student -> username: student123, password: xdd
+2. Professor -> username: professor123, password: xdd
+3. Board-member -> username: board123, password: xdd
