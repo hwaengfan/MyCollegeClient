@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginAction } from '../../../actions/authenticationAction';
-import ErrorBox from '../../../components/home/form/ErrorBox';
+import ErrorBox from '../../../components/states/ErrorBox';
 import PasswordField from '../../../components/home/form/PasswordField';
 import SubmitButton from '../../../components/home/form/SubmitButton';
 import TextField from '../../../components/home/form/TextField';
-import { formData } from '../../../types/DataTypes';
+import { LoginFormData } from '../../../types/DataTypes';
 import { useAppDispatch, useAppSelector } from '../../../types/ReduxTypes';
 
 const LoginForm: React.FC = () => {
@@ -16,7 +16,7 @@ const LoginForm: React.FC = () => {
 
   const handleSubmitForm = (event: React.SyntheticEvent): void => {
     event.preventDefault();
-    const eventTarget = event.target as typeof event.target & formData;
+    const eventTarget = event.target as typeof event.target & LoginFormData;
     const loginData = {
       username: eventTarget.username.value,
       password: eventTarget.password.value,
@@ -31,7 +31,7 @@ const LoginForm: React.FC = () => {
       <form className="form" ref={formRef} onSubmit={handleSubmitForm}>
         <TextField name="username" placeholder="username" />
         <PasswordField name="password" placeholder="password" />
-        {error.errorMessage !== '' && (
+        {error.errorType === 'login' && (
           <ErrorBox errorMessage={error.errorMessage} />
         )}
         <SubmitButton value="Verify" />

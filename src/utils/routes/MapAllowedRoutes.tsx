@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import ErrorState from '../../components/states/error/ErrorState';
-import LoadingState from '../../components/states/loading/LoadingState';
+import ErrorState from '../../pages/error/ErrorState';
+import LoadingState from '../../pages/loading/LoadingState';
 import { useAppSelector } from '../../types/ReduxTypes';
 import boardMemberRouteConfig from './configs/boardMemberRouteConfig';
 import guestRouteConfig from './configs/guestRouteConfig';

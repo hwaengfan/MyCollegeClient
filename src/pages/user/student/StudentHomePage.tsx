@@ -1,14 +1,15 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import CourseCard from '../../../components/user/CourseCard';
+import { useAppSelector } from '../../../types/ReduxTypes';
 import formatName from '../../../utils/formatName';
 import importImage from '../../../utils/importImage';
 import availableCourses from '../../../__mock-data__/availableCourses';
 import StudentHeader from './StudentHeader';
 
 const StudentHomePage: React.FC = () => {
-  let studentFirstName = 'Hoang';
-  let studentLastName = 'Phan';
+  const studentFirstName = useAppSelector(state => state.user.firstName);
+  const studentLastName = useAppSelector(state => state.user.lastName);
 
   return (
     <>

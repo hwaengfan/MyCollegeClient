@@ -1,14 +1,15 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import ProfileForm from '../../../components/user/ProfileForm';
+import { useAppSelector } from '../../../types/ReduxTypes';
 import formatName from '../../../utils/formatName';
 import BoardMemberHeader from './BoardMemberHeader';
 
 const BoardProfilePage: React.FC = () => {
-  let boardMemberFirstName = 'Dean';
-  let boardMemberLastName = 'Sensei';
-  let boardMemberEmail = 'example@gmail.com';
-  let boardMemberUsername = 'test123';
+  const boardMemberFirstName = useAppSelector(state => state.user.firstName);
+  const boardMemberLastName = useAppSelector(state => state.user.lastName);
+  const boardMemberEmail = useAppSelector(state => state.user.email);
+  const boardMemberUsername = useAppSelector(state => state.user.username);
 
   return (
     <>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
+import { useAppSelector } from '../../../types/ReduxTypes';
 import formatName from '../../../utils/formatName';
 import BoardMemberHeader from './BoardMemberHeader';
 
 const BoardMemberHomePage: React.FC = () => {
-  let boardMemberFirstName = 'Dean';
-  let boardMemberLastName = 'Sensei';
+  const boardMemberFirstName = useAppSelector(state => state.user.firstName);
+  const boardMemberLastName = useAppSelector(state => state.user.lastName);
 
   return (
     <>

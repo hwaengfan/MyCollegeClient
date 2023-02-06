@@ -22,6 +22,7 @@ export interface ProfileFormProps {
   userUsername: string;
   customFieldLabel?: string;
   customFieldValue?: string;
+  customFieldName?: string;
 }
 
 export interface UserHeaderProps {

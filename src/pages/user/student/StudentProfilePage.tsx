@@ -1,15 +1,16 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import ProfileForm from '../../../components/user/ProfileForm';
+import { useAppSelector } from '../../../types/ReduxTypes';
 import formatName from '../../../utils/formatName';
 import StudentHeader from './StudentHeader';
 
 const StudentProfilePage: React.FC = () => {
-  let studentFirstName = 'Hoang';
-  let studentLastName = 'Phan';
-  let studentEmail = 'example@gmail.com';
-  let studentUsername = 'test123';
-  let studentMajor = 'Math';
+  const studentFirstName = useAppSelector(state => state.user.firstName);
+  const studentLastName = useAppSelector(state => state.user.lastName);
+  const studentEmail = useAppSelector(state => state.user.email);
+  const studentUsername = useAppSelector(state => state.user.username);
+  const studentMajor = useAppSelector(state => state.user.major);
 
   return (
     <>
@@ -25,6 +26,7 @@ const StudentProfilePage: React.FC = () => {
           <h3>Profile Setting</h3>
           <ProfileForm
             customFieldLabel="Major"
+            customFieldName="major"
             userFirstName={studentFirstName}
             userLastName={studentLastName}
             userEmail={studentEmail}

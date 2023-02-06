@@ -4,7 +4,7 @@ import { signupAction } from '../../../actions/authenticationAction';
 import PasswordField from '../../../components/home/form/PasswordField';
 import SubmitButton from '../../../components/home/form/SubmitButton';
 import TextField from '../../../components/home/form/TextField';
-import { formData } from '../../../types/DataTypes';
+import { SignupFormData } from '../../../types/DataTypes';
 import { useAppDispatch } from '../../../types/ReduxTypes';
 
 const SignupPage: React.FC = () => {
@@ -14,7 +14,7 @@ const SignupPage: React.FC = () => {
 
   const handleSubmitForm = (event: React.SyntheticEvent): void => {
     event.preventDefault();
-    const eventTarget = event.target as typeof event.target & formData;
+    const eventTarget = event.target as typeof event.target & SignupFormData;
     const signupData = {
       firstName: eventTarget.firstName.value,
       lastName: eventTarget.lastName.value,

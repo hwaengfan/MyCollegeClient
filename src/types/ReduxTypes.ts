@@ -11,15 +11,45 @@ export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-// authentication actions
-export interface loginData {
+// authentication
+export interface LoginData {
   username: string;
   password: string;
 }
 
-export interface signupData {
+export interface SignupData {
   firstName: string;
   lastName: string;
   username: string;
   password: string;
+}
+
+// error
+export interface ErrorPayload {
+  errorMessage: string;
+  errorType: string;
+}
+
+// user
+export interface UserData {
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  ID: string;
+  email: string;
+  userType?: string;
+  department?: string;
+  major?: string;
+}
+
+export interface ModifiedData {
+  currentUser: string;
+  username: string;
+  currentPassword: string;
+  newPassword: string;
+  firstName: string;
+  lastName: string;
+  major?: string;
+  department?: string;
 }

@@ -1,0 +1,11 @@
+@import '../../assets/global.scss';
+
+.error {
+  margin-top: 16px;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  border-color: $red;
+  background-color: $red;
+  color: $white;
+}

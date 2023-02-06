@@ -20,7 +20,7 @@ const PasswordField: React.FC<FieldProps> = props => {
         name="password"
         className="pass-key"
         placeholder={props.placeholder}
-        maxLength={10}
+        maxLength={50}
         required
       />
       <span className="show" onClick={handleClickShowPass}>

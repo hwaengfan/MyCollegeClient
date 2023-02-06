@@ -1,10 +1,11 @@
 import React from 'react';
-import { ErrorBoxProps } from '../../../types/PropTypes';
+import { ErrorBoxProps } from '../../types/PropTypes';
+import './ErrorBox.scss';
 
 const ErrorBox: React.FC<ErrorBoxProps> = props => {
   return (
     <>
-      <p className="space error">{props.errorMessage}</p>
+      <p className="error">{props.errorMessage}</p>
     </>
   );
 };

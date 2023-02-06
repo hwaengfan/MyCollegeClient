@@ -1,33 +1,58 @@
-import { SET_CURRENT_USER, SET_ERROR } from '../types/ActionTypes';
-import { AppDispatch, loginData, signupData } from '../types/ReduxTypes';
+import { SET_CURRENT_USER } from '../types/ActionTypes';
+import {
+  AppDispatch,
+  LoginData,
+  SignupData,
+  UserData,
+} from '../types/ReduxTypes';
+import {
+  board,
+  guest,
+  professor,
+  student,
+} from '../__mock-data__/currentUsers';
+import { clearError, setError } from './errorAction';
+import { setUserInfoAction } from './userAction';
 
-const loginAction = (loginData: loginData) => (dispatch: AppDispatch) => {
-  if (loginData.username === 'student123' && loginData.password === 'xdd') {
-    dispatch({ type: SET_CURRENT_USER, payload: 'student' });
-    dispatch({ type: SET_ERROR, payload: '' });
+const checkUserPass = (username: string, password: string): UserData => {
+  if (username === student.username && password === student.password) {
+    return student;
   } else if (
-    loginData.username === 'professor123' &&
-    loginData.password === 'xdd'
+    username === professor.username &&
+    password === professor.password
   ) {
-    dispatch({ type: SET_CURRENT_USER, payload: 'professor' });
-    dispatch({ type: SET_ERROR, payload: '' });
-  } else if (
-    loginData.username === 'board123' &&
-    loginData.password === 'xdd'
-  ) {
-    dispatch({ type: SET_CURRENT_USER, payload: 'board-member' });
-    dispatch({ type: SET_ERROR, payload: '' });
+    return professor;
+  } else if (username === board.username && password === board.password) {
+    return board;
   } else {
-    dispatch({ type: SET_ERROR, payload: 'Invalid username or password!' });
+    return guest;
+  }
+};
+
+const loginAction = (loginData: LoginData) => (dispatch: AppDispatch) => {
+  const data = checkUserPass(loginData.username, loginData.password);
+
+  if (data.userType !== 'guest') {
+    dispatch(setCurrentUserAction(data.userType));
+    dispatch(setUserInfoAction(data));
+    dispatch(clearError());
+  } else {
+    dispatch(setError('login', 'Invalid username or password!'));
   }
 };
 
 const logoutAction = () => (dispatch: AppDispatch) => {
-  dispatch({ type: SET_CURRENT_USER, payload: 'guest' });
+  dispatch(setCurrentUserAction('guest'));
+  dispatch(clearError());
 };
 
-const signupAction = (signupData: signupData) => (dispatch: AppDispatch) => {
-  dispatch({ type: SET_CURRENT_USER, payload: 'student' });
+const signupAction = (signupData: SignupData) => (dispatch: AppDispatch) => {
+  dispatch(setCurrentUserAction('student'));
 };
+
+const setCurrentUserAction =
+  (userType: string | undefined) => (dispatch: AppDispatch) => {
+    dispatch({ type: SET_CURRENT_USER, payload: userType });
+  };
 
 export { loginAction, logoutAction, signupAction };
