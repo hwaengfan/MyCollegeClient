@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Image } from 'react-bootstrap';
+import { Button, Form, Image, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { clearError, setError } from '../../actions/errorAction';
 import { modifyUserAction } from '../../actions/userAction';
@@ -12,6 +12,10 @@ import ErrorBox from '../states/ErrorBox';
 
 const ProfileForm: React.FC<ProfileFormProps> = props => {
   const [newPass, setNewPass] = useState('');
+  const [showPassword, setShowPassword] = useState({
+    showCurrentPassword: false,
+    showNewPassword: false,
+  });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const currentUser = useAppSelector(
@@ -25,6 +29,26 @@ const ProfileForm: React.FC<ProfileFormProps> = props => {
   ): void => {
     event.preventDefault();
     setNewPass(event.target.value);
+  };
+
+  const handleClickShowCurrentPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+    setShowPassword({
+      ...showPassword,
+      showCurrentPassword: !showPassword.showCurrentPassword,
+    });
+  };
+
+  const handleClickShowNewPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+    setShowPassword({
+      ...showPassword,
+      showNewPassword: !showPassword.showNewPassword,
+    });
   };
 
   const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -110,24 +134,39 @@ const ProfileForm: React.FC<ProfileFormProps> = props => {
           {newPass.length !== 0 && (
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                name="currentPassword"
-                type="password"
-                maxLength={50}
-                placeholder="current password"
-                required
-              />
+              <InputGroup className="mb-3">
+                <Form.Control
+                  name="currentPassword"
+                  type={showPassword.showCurrentPassword ? 'text' : 'password'}
+                  maxLength={50}
+                  placeholder="current password"
+                  required
+                />
+                <Button
+                  variant="outline-secondary"
+                  onClick={handleClickShowCurrentPassword}>
+                  {showPassword.showCurrentPassword ? 'Hide' : 'Show'}
+                </Button>
+              </InputGroup>
             </Form.Group>
           )}
           <Form.Group className="mb-3">
-            <Form.Label>New password</Form.Label>
-            <Form.Control
-              name="newPassword"
-              onChange={handleNewPassChange}
-              type="password"
-              maxLength={50}
-              placeholder="new password"
-            />
+            <Form.Label>New Password</Form.Label>
+            <InputGroup className="mb-3">
+              <Form.Control
+                name="newPassword"
+                type={showPassword.showNewPassword ? 'text' : 'password'}
+                maxLength={50}
+                placeholder="new password"
+                onChange={handleNewPassChange}
+                required
+              />
+              <Button
+                variant="outline-secondary"
+                onClick={handleClickShowNewPassword}>
+                {showPassword.showNewPassword ? 'Hide' : 'Show'}
+              </Button>
+            </InputGroup>
           </Form.Group>
           {error.errorType === 'profile' && (
             <ErrorBox errorMessage={error.errorMessage} />
