@@ -48,6 +48,11 @@ const logoutAction = () => (dispatch: AppDispatch) => {
 
 const signupAction = (signupData: SignupData) => (dispatch: AppDispatch) => {
   dispatch(setCurrentUserAction('student'));
+
+  const ID = 'TEST_ID';
+  const email = `${signupData.firstName}${signupData.lastName}@gmail.com`;
+  const userData = { ...signupData, ID: ID, email: email };
+  dispatch(setUserInfoAction(userData));
 };
 
 const setCurrentUserAction =

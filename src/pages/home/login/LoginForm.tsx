@@ -1,18 +1,24 @@
-import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { loginAction } from '../../../actions/authenticationAction';
-import ErrorBox from '../../../components/states/ErrorBox';
+import { clearError } from '../../../actions/errorAction';
 import PasswordField from '../../../components/home/form/PasswordField';
 import SubmitButton from '../../../components/home/form/SubmitButton';
 import TextField from '../../../components/home/form/TextField';
+import ErrorBox from '../../../components/states/ErrorBox';
 import { LoginFormData } from '../../../types/DataTypes';
 import { useAppDispatch, useAppSelector } from '../../../types/ReduxTypes';
 
 const LoginForm: React.FC = () => {
-  const formRef = useRef<HTMLFormElement>(null);
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   const error = useAppSelector(state => state.error);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch, location.pathname]);
 
   const handleSubmitForm = (event: React.SyntheticEvent): void => {
     event.preventDefault();
@@ -38,7 +44,12 @@ const LoginForm: React.FC = () => {
       </form>
       <span className="footer">
         Don't have account?{' '}
-        <span onClick={() => navigate('/signup')}>Signup Now</span>
+        <span
+          onClick={() => {
+            navigate('/signup');
+          }}>
+          Signup Now
+        </span>
       </span>
     </div>
   );

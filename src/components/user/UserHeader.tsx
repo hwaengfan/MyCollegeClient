@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logoutAction } from '../../actions/authenticationAction';
+import { clearError } from '../../actions/errorAction';
 import { fontFamily, yellow } from '../../assets/global';
 import { UserHeaderProps } from '../../types/PropTypes';
 import { useAppDispatch } from '../../types/ReduxTypes';
@@ -27,6 +28,11 @@ const NavLinkStyles: React.CSSProperties = {
 const UserHeader: React.FC<UserHeaderProps> = props => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch, location.pathname]);
 
   const handleLogout = (event: any): void => {
     event.preventDefault();
