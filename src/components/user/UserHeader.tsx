@@ -51,17 +51,9 @@ const UserHeader: React.FC<UserHeaderProps> = props => {
           id="responsive-navbar-nav"
           className="justify-content-end me-auto">
           <Nav>
-            {props.sections.map(section => {
-              return (
-                <Nav.Link
-                  key={section.label}
-                  as={Link}
-                  to={section.path}
-                  style={NavLinkStyles}>
-                  {section.label}
-                </Nav.Link>
-              );
-            })}
+            <Nav.Link as={Link} to="/profile" style={NavLinkStyles}>
+              Profile
+            </Nav.Link>
             <Nav.Link
               as={Link}
               to="/"

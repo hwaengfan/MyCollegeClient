@@ -28,11 +28,6 @@ export interface ProfileFormProps {
 export interface UserHeaderProps {
   userFirstName: string;
   userLastName: string;
-  sections: Array<{
-    title: string;
-    label: string;
-    path: string;
-  }>;
 }
 
 export interface ErrorBoxProps {
