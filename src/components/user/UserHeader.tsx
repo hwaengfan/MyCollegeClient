@@ -35,21 +35,13 @@ const UserHeader: React.FC<UserHeaderProps> = props => {
   };
 
   return (
-    <Navbar
-      collapseOnSelect
-      expand="sm"
-      bg="dark"
-      variant="dark"
-      fixed="top"
-      style={NavBarStyles}>
+    <Navbar bg="dark" variant="dark" fixed="top" style={NavBarStyles}>
       <Container fluid>
         <Navbar.Brand style={NavBrandStyles} as={Link} to="/">
           {formatName(props.userFirstName, props.userLastName)}
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse
-          id="responsive-navbar-nav"
-          className="justify-content-end me-auto">
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end me-auto">
           <Nav>
             <Nav.Link as={Link} to="/profile" style={NavLinkStyles}>
               Profile
