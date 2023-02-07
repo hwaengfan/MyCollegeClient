@@ -37,7 +37,7 @@ const UserHeader: React.FC<UserHeaderProps> = props => {
   return (
     <Navbar
       collapseOnSelect
-      expand="lg"
+      expand="sm"
       bg="dark"
       variant="dark"
       fixed="top"
