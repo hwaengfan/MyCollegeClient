@@ -2,10 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 import ErrorState from '../../pages/error/ErrorState';
 import LoadingState from '../../pages/loading/LoadingState';
 import { useAppSelector } from '../../types/ReduxTypes';
-import boardMemberRouteConfig from './configs/boardMemberRouteConfig';
-import guestRouteConfig from './configs/guestRouteConfig';
-import professorRouteConfig from './configs/professorRouteConfig';
-import studentRouteConfig from './configs/studentRouteConfig';
+import BoardMemberRouteConfig from './configs/BoardMemberRouteConfig';
+import CourseRouteConfig from './configs/CourseRouteConfig';
+import GuestRouteConfig from './configs/GuestRouteConfig';
+import ProfessorRouteConfig from './configs/ProfessorRouteConfig';
+import StudentRouteConfig from './configs/StudentRouteConfig';
 
 const MapAllowedRoutes: React.FC = () => {
   const authentication = useAppSelector(state => state.authentication);
@@ -13,17 +14,19 @@ const MapAllowedRoutes: React.FC = () => {
 
   switch (authentication.currentUserRole) {
     case 'student':
-      mapRoutes = studentRouteConfig;
+      mapRoutes = StudentRouteConfig;
       break;
     case 'professor':
-      mapRoutes = professorRouteConfig;
+      mapRoutes = ProfessorRouteConfig;
       break;
     case 'board-member':
-      mapRoutes = boardMemberRouteConfig;
+      mapRoutes = BoardMemberRouteConfig;
       break;
     default:
-      mapRoutes = guestRouteConfig;
+      mapRoutes = GuestRouteConfig;
   }
+
+  mapRoutes = CourseRouteConfig;
 
   return (
     <Routes>

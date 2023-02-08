@@ -8,7 +8,7 @@ const BoardProfilePage = React.lazy(
   () => import('../../../pages/user/board-member/BoardMemberProfilePage'),
 );
 
-const boardMemberRouteConfig = [
+const BoardMemberRouteConfig = [
   {
     title: 'home',
     path: '/',
@@ -21,4 +21,4 @@ const boardMemberRouteConfig = [
   },
 ];
 
-export default boardMemberRouteConfig;
+export default BoardMemberRouteConfig;

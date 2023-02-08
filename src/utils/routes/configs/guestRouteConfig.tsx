@@ -8,7 +8,7 @@ const SignupPage = React.lazy(
   () => import('../../../pages/home/signup/SignupPage'),
 );
 
-const publicRouteConfig = [
+const GuestRouteConfig = [
   {
     title: 'home',
     path: '/',
@@ -21,4 +21,4 @@ const publicRouteConfig = [
   },
 ];
 
-export default publicRouteConfig;
+export default GuestRouteConfig;

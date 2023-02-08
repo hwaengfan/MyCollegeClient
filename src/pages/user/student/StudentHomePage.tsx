@@ -1,26 +1,14 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import CourseCard from '../../../components/user/CourseCard';
-import { useAppSelector } from '../../../types/ReduxTypes';
-import formatName from '../../../utils/formatName';
+import UserHeader from '../../../components/user/UserHeader';
 import importImage from '../../../utils/importImage';
 import availableCourses from '../../../__mock-data__/availableCourses';
-import StudentHeader from './StudentHeader';
 
 const StudentHomePage: React.FC = () => {
-  const studentFirstName = useAppSelector(state => state.user.firstName);
-  const studentLastName = useAppSelector(state => state.user.lastName);
-
   return (
     <>
-      <Helmet>
-        <title>{formatName(studentFirstName, studentLastName)}</title>
-      </Helmet>
       <div className="mt-5">
-        <StudentHeader
-          studentFirstName={studentFirstName}
-          studentLastName={studentLastName}
-        />
+        <UserHeader />
         <div className="d-flex flex-column justify-content-center align-items-center align-content-center py-4">
           <h3>Dashboard</h3>
           <div className="container">

@@ -25,11 +25,6 @@ export interface ProfileFormProps {
   customFieldName?: string;
 }
 
-export interface UserHeaderProps {
-  userFirstName: string;
-  userLastName: string;
-}
-
 export interface ErrorBoxProps {
   errorMessage: string;
 }

@@ -8,7 +8,7 @@ const ProfessorProfilePage = React.lazy(
   () => import('../../../pages/user/professor/ProfessorProfilePage'),
 );
 
-const professorRouteConfig = [
+const ProfessorRouteConfig = [
   {
     title: 'home',
     path: '/',
@@ -21,4 +21,4 @@ const professorRouteConfig = [
   },
 ];
 
-export default professorRouteConfig;
+export default ProfessorRouteConfig;

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logoutAction } from '../../actions/authenticationAction';
 import { clearError } from '../../actions/errorAction';
 import { fontFamily, yellow } from '../../assets/global';
-import { UserHeaderProps } from '../../types/PropTypes';
-import { useAppDispatch } from '../../types/ReduxTypes';
+import { useAppDispatch, useAppSelector } from '../../types/ReduxTypes';
 import formatName from '../../utils/formatName';
 
 const NavBarStyles: React.CSSProperties = {
@@ -25,10 +25,14 @@ const NavLinkStyles: React.CSSProperties = {
   textAlign: 'right',
 };
 
-const UserHeader: React.FC<UserHeaderProps> = props => {
+const UserHeader: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const userName = useAppSelector(state => ({
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
+  }));
 
   useEffect(() => {
     dispatch(clearError());
@@ -41,28 +45,33 @@ const UserHeader: React.FC<UserHeaderProps> = props => {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" fixed="top" style={NavBarStyles}>
-      <Container fluid>
-        <Navbar.Brand style={NavBrandStyles} as={Link} to="/">
-          {formatName(props.userFirstName, props.userLastName)}
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end me-auto">
-          <Nav>
-            <Nav.Link as={Link} to="/profile" style={NavLinkStyles}>
-              Profile
-            </Nav.Link>
-            <Nav.Link
-              as={Link}
-              to="/"
-              onClick={handleLogout}
-              style={NavLinkStyles}>
-              Logout
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <>
+      <Helmet>
+        <title>{formatName(userName.firstName, userName.lastName)}</title>
+      </Helmet>
+      <Navbar bg="dark" variant="dark" fixed="top" style={NavBarStyles}>
+        <Container fluid>
+          <Navbar.Brand style={NavBrandStyles} as={Link} to="/">
+            {formatName(userName.firstName, userName.lastName)}
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end me-auto">
+            <Nav>
+              <Nav.Link as={Link} to="/profile" style={NavLinkStyles}>
+                Profile
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/"
+                onClick={handleLogout}
+                style={NavLinkStyles}>
+                Logout
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
   );
 };
 
