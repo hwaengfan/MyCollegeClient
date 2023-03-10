@@ -26,7 +26,7 @@ const MapAllowedRoutes: React.FC = () => {
       mapRoutes = GuestRouteConfig;
   }
 
-  mapRoutes = CourseRouteConfig;
+  // mapRoutes = CourseRouteConfig;
 
   return (
     <Routes>

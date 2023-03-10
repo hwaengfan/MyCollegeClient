@@ -27,7 +27,6 @@ const ProfessorProfilePage: React.FC = () => {
             userUsername={userInfo.username}
             customFieldValue={userInfo.department}
           />
-          userInfo.firstName
         </div>
       </div>
     </>
