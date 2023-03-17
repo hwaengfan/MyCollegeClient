@@ -39,3 +39,10 @@ export interface ProfessorHeaderProps {
   professorFirstName: string;
   professorLastName: string;
 }
+
+// Course Page
+export interface AssignmentCardProps {
+  assignmentName: string;
+  assignmentDescription: string;
+  assignmentGrade: string;
+}
